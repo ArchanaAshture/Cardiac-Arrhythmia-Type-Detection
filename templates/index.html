@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Arrhythmia Classification</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+  <!-- -------------------------------------------------------------------------------------------------------  -->
+
+  <div class="intro-block">
+    <div class="monitor">
+<?xml version="1.0" encoding="utf-8"?>
+					<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 viewBox="0 0 500 200" style="enable-background:new 0 0 500 200;" xml:space="preserve">
+					<g>
+						<polyline class="ekg" points="486.6,113.8 328.2,113.8 310.3,132.3 296,70.7 246.8,127.4 241.6,120.2 233.9,166.4 227,27.6 
+							213.2,118.3 211.8,112.3 205.1,126.1 198.2,108.5 194.1,124.4 184.5,92.9 174.1,113 4.3,113 	"/>
+					</g>
+					</svg>
+
+  
+  
+</div>
+
+  <!-- -------------------------------------------------------------------------------------------------------  -->
+
+  <div class="login">
+	<h2>Arrhythmia Type Prediction</h2>
+    <!-- record	type	0_pre-RR	0_post-RR	0_pPeak	0_tPeak	0_rPeak	0_sPeak	0_qPeak	0_qrs_interval	0_pq_interval	0_qt_interval	0_st_interval	0_qrs_morph0	0_qrs_morph1	0_qrs_morph2	0_qrs_morph3	0_qrs_morph4	1_pre-RR	1_post-RR	1_pPeak	1_tPeak	1_rPeak	1_sPeak	1_qPeak	1_qrs_interval	1_pq_interval	1_qt_interval	1_st_interval	1_qrs_morph0	1_qrs_morph1	1_qrs_morph2	1_qrs_morph3	1_qrs_morph4 -->
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	
+        <input type="text" name="0_pre-RR" placeholder="0_pre-RR" required="required" />
+		<input type="text" name="0_post-RR" placeholder="0_post-RR" required="required" />
+        <input type="text" name="0_pPeak" placeholder="0_pPeak" required="required" />
+        <input type="text" name="0_tPeak" placeholder="0_tPeak" required="required" />
+        <input type="text" name="0_rPeak" placeholder="0_rPeak" required="required" />
+        <input type="text" name="0_sPeak" placeholder="0_sPeak" required="required" />
+        <input type="text" name="0_qPeak" placeholder="0_qPeak" required="required" />
+        <input type="text" name="0_qrs_interval" placeholder="0_qrs_interval" required="required" />
+        <input type="text" name="0_pq_interval" placeholder="0_pq_interval" required="required" />
+        <input type="text" name="0_qt_interval" placeholder="0_qt_interval" required="required" />
+
+        <input type="text" name="0_qrs_morph4" placeholder="0_qrs_morph4" required="required" />
+
+        <input type="text" name="1_pPeak" placeholder="1_pPeak" required="required" />
+        <input type="text" name="1_tPeak" placeholder="1_tPeak" required="required" />
+        <input type="text" name="1_rPeak" placeholder="1_rPeak" required="required" />
+        <input type="text" name="1_sPeak" placeholder="1_sPeak" required="required" />
+        <input type="text" name="1_qPeak" placeholder="1_qPeak" required="required" />
+        <input type="text" name="1_qrs_interval" placeholder="1_qrs_interval" required="required" />
+        <input type="text" name="1_pq_interval" placeholder="1_pq_interval" required="required" />
+        <input type="text" name="1_qt_interval" placeholder="1_qt_interval" required="required" />
+        <input type="text" name="1_st_interval" placeholder="1_st_interval" required="required" />
+
+<br>
+        <button type="submit" class="btn btn-primary  btn-large" style="width: 20%;">Predict</button>
+    </form>
+
+   <br>
+   <br>
+
+   <h4 class="output">
+   {{ prediction_text }}
+  </h4>
+
+ </div>
+ <div class="catagories">
+  <!-- Each data contain five classes/categories: N (Normal), S (Supraventricular ectopic beat), V (Ventricular ectopic beat), F (Fusion beat), and Q (Unknown beat). The -->
+  <h4 style="size: 40px;">Cardiac Arrhythmia Categories </h4>
+  <li>N  - Normal </li>
+  <li>SVEB  - Supraventricular ectopic beat</li>
+  <li>VEB  - Ventricular ectopic beat</li>
+  <li>F1  - Fusion beat</li>
+  <!-- <li>Q  - Unknown beat</li> -->
+ </div>
+
+</div>
+</body>
+</html>
